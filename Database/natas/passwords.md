@@ -1,6 +1,5 @@
-0 - natas0
-
-1 - 0nzCigAq7t2iALyvU9xcHlYN4MlkIwlq
-2 - TguMNxKo1DSa1tujBLuZJnDUlCcUAPlI
-3 - 3gqisGdR0pjm6tpkDKdIWO2hSvchLeYH
-4 - QryZXc2e0zahULdHrtHxzyYkj59kUxLQ
+0. natas0
+1. 0nzCigAq7t2iALyvU9xcHlYN4MlkIwlq
+2. TguMNxKo1DSa1tujBLuZJnDUlCcUAPlI
+3. 3gqisGdR0pjm6tpkDKdIWO2hSvchLeYH
+4. QryZXc2e0zahULdHrtHxzyYkj59kUxLQ
