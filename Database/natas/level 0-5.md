@@ -51,3 +51,13 @@ being curious, i noticed that when i went to the site from just typing in the UR
 # level 5-6
 
 ---
+
+this level gave you the prompt
+
+```
+Access disallowed. You are not logged in
+```
+
+looking into this the same way as the last level, i viewed the request portion and noticed there was a `Cookie: loggedin=0` atribute. I decided to change the 0 to a 1 and see if that had any change and it logged me in.
+
+the practice behind this is how website view credentials. the cookie is verrifed on the server end to tell if that account has been logged in before to allow you to not need to verify yourself on every page after a login. there are a few different ways to achieve this.
