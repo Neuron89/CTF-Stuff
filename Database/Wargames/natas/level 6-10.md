@@ -120,6 +120,32 @@ xxd -r -p code >> code_binary | rev code_binary >> code_rev | base64 -d code_rev
 
 # level 9-10
 
+This level starts getting into sql injection or in this case, command line injection due to how the search bar is configured. if we look at the source code below, we can see how the search paramaters are layed out
+
+```
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    passthru("grep -i $key dictionary.txt");
+}
+?>
+```
+
+the soure code wants to look at the dictonary.txt. it does however, provide us with the `$key`. if we input that `$key` into the search bar and then end the line of code with `;`, then we can follow up with a standard set of commands.
+
+we know from the begining of the game that all paswords are listed in `/etc/natas_webpass/natas*` so in this case we try the command
+
+```
+needle; /etc/natas_webpass/natas10
+```
+
+and we are given the entire listing of the dictonary.txt and the password for the next level.
+
 - ***
 
 # level 10-11
