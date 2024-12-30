@@ -1,7 +1,5 @@
 # level 6-7
 
----
-
 This level provides you with a input box
 
 ```
@@ -72,18 +70,12 @@ if we take the file path that we know `/etc/natas_webpass/natas8` and add it as 
 
 # level 8-9
 
----
-
 - ***
 
 # level 9-10
 
----
-
 - ***
 
 # level 10-11
-
----
 
 - ***
