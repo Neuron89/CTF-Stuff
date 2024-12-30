@@ -40,8 +40,6 @@ taking this password and then putting it into the text box on the main page and 
 
 # level 7-8
 
----
-
 looking at this level, we get two buttons `home` and `about`. they bring us to two different pages. both pages look the same with a small description. when we look at the source code we get
 
 ```
