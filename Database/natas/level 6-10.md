@@ -70,6 +70,52 @@ if we take the file path that we know `/etc/natas_webpass/natas8` and add it as 
 
 # level 8-9
 
+this is another level where you have to input the secrect and you have access to the source code. the section of code we need to look at it :
+
+```
+<?
+
+$encodedSecret = "3d3d516343746d4d6d6c315669563362";
+
+function encodeSecret($secret) {
+    return bin2hex(strrev(base64_encode($secret)));
+}
+
+if(array_key_exists("submit", $_POST)) {
+    if(encodeSecret($_POST['secret']) == $encodedSecret) {
+    print "Access granted. The password for natas9 is <censored>";
+    } else {
+    print "Wrong secret";
+    }
+}
+?>
+```
+
+looking at this, its very similar to level 6-7. the big differenece is we dont have access to the file with the password but we do have the encoded secret. to solve this we fisrt need to convert this back to a binary, then reverse it, then decode the base64 string. we start with converting it back to binary. for this we will refrence the hexcode placed in a file called `code`. we will cat each output to show what happened
+
+```bash
+xxd -r -p code >> code_binary | cat code_binary
+==QcCtmMml1ViV3b
+
+# then we take this new file and reverse it
+
+rev code_binary >> code_rev | cat code_rev
+b3ViV1lmMmtCcQ==
+
+# we then take this and decode using the base 64
+
+base64 -d code_rev >> code_decode | cat code_decode
+oubWYf2kBq
+```
+
+now we have the secret. we take this secret and input it in the text box which then gives us the password for the next level.
+
+we can also use one line that would look like this
+
+```bash
+xxd -r -p code >> code_binary | rev code_binary >> code_rev | base64 -d code_rev >> code_decode
+```
+
 - ***
 
 # level 9-10
