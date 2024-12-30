@@ -40,6 +40,12 @@ when inspecting the page they had a hidden comment about `not even google can fi
 
 ---
 
+I feel somewhat comfotrable with burb suite so i think i flew through this faster then i should have. the site says `Access disallowed. You are visiting from "" while authorized users should come only from "http://natas5.natas.labs.overthewire.org/"`. when i hit the refresh button, it reloaded to the exact same saying. i then hit the refresh button loaded on the site and then was given a message of `Access disallowed. You are visiting from "http://natas4.natas.labs.overthewire.org/" while authorized users should come only from "http://natas5.natas.labs.overthewire.org/"`. this pointed me to think about the `refresh` button. it added the `/index.php`. i assumed it might have something to do with that. it didnt.
+
+I then thought about that `while authorized users should come only from ` this made me think about how websites know where you are coming from. Learning a litle bit about `Referer`, i noticed in burpsuite a section under the request tab a section called `Referer`. I set up a Repeater and just changed the `natas4` to `natas5` and it gave me the code.
+
+being curious, i noticed that when i went to the site from just typing in the URL bar, it didnt have a `Referer` section from the request, only when i hit the `Refresh` button on the site itself did i gain the atribute.
+
 ---
 
 # level 5-6
