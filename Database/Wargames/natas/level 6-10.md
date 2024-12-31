@@ -150,4 +150,36 @@ and we are given the entire listing of the dictonary.txt and the password for th
 
 # level 10-11
 
+This one was bit more confusing. without any sanitization, using cmd line injection is pretty simple. The code below adds a layer of sanitization for `/[;|&]/` this regex section defeats your standard attacks.
+
+```
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    if(preg_match('/[;|&]/',$key)) {
+        print "Input contains an illegal character!";
+    } else {
+        passthru("grep -i $key dictionary.txt");
+    }
+}
+?>
+```
+
+once we get to looking at `grep` we see how it works:
+
+```
+Usage: grep [OPTION]... PATTERNS [FILE]...
+Search for PATTERNS in each FILE.
+Example: grep -i 'hello world' menu.h main.c
+PATTERNS can contain multiple patterns separated by newlines.
+```
+
+we want to focus on PATTERNS can contain **_multiple patterns separated by newlines._** part. the way grep works is that it will seach in **_multiple_** places. we then start by search for a single leter but the important bit is we now give it an additonal place to look.
+The request looks like `a /etc/natas_webpass/natas11`. what the program reads it as is `grep -i a dictionary.txt /etc/natas_webpass/natas11 `. The first part looks for a in the dictionary.txt file. Greps `-i` flag makes it case insensitive so it look for a & A. the first request will list every word with an A in it. The next part is where the **_multiple Patterns_** comes in. Grep now searches for A in the `/etc/natas_webpass/natas11` and if there is an A in the password, its now displayed.
+
 - ***
